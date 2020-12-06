@@ -16,15 +16,15 @@ Faoxis Platform repository
 ### Ответы на вопросы:
 #### Разберитесь почему все pod в namespace kube-system восстановились после удаления. Для ответа на вопрос попробуем проделать следующий действия:
 1) Выполним команду `kubectl delete pod --all -n kube-system`, а затем `kubectl get pods -n kube-system`, чтобы убедиться, что поды на месте:
-```shell
-NAME                               READY   STATUS    RESTARTS   AGE
-coredns-f9fd979d6-5d25r            1/1     Running   0          50s
-etcd-minikube                      1/1     Running   0          50s
-kube-apiserver-minikube            1/1     Running   0          50s
-kube-controller-manager-minikube   1/1     Running   0          50s
-kuяbe-proxy-nlw69                   1/1     Running   0          43s
-kube-scheduler-minikube            1/1     Running   0          49s
-```
+    ```shell
+    NAME                               READY   STATUS    RESTARTS   AGE
+    coredns-f9fd979d6-5d25r            1/1     Running   0          50s
+    etcd-minikube                      1/1     Running   0          50s
+    kube-apiserver-minikube            1/1     Running   0          50s
+    kube-controller-manager-minikube   1/1     Running   0          50s
+    kuяbe-proxy-nlw69                   1/1     Running   0          43s
+    kube-scheduler-minikube            1/1     Running   0          49s
+    ```
 2) Далее нам необходимо проверить участие `Replica Set` и `Daemon Set` в поднятии подов. Для этого выполним следующие команды и посмотрим на результат:
     ```shell
     ➜  ~ kubectl get ds -n kube-system
