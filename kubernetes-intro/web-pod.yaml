@@ -7,7 +7,7 @@ metadata:
 spec: # Описание Pod
   containers: # Описание контейнеров внутри Pod
   - name: web # Название контейнера
-    image: registry.hub.docker.com/faoxis/otus-nginx:0.0.1 # Образ из которого создается контейнер
+    image: registry.hub.docker.com/faoxis/otus-nginx:0.0.4 # Образ из которого создается контейнер
     volumeMounts:
       - name: app
         mountPath: /app
