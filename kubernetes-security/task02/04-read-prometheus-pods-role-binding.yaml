@@ -1,0 +1,12 @@
+kind: RoleBinding
+metadata:
+  name: prometheus-pod-reader
+  namespace: prometheus
+subjects:
+  - kind: User
+    name: bob
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind:
+  name: admin
+  apiGroup: rbac.authorization.k8s.io
