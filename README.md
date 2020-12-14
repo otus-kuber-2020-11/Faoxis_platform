@@ -40,3 +40,19 @@ Faoxis Platform repository
     Динамические поды поднимаются с помощью записи о них в `Replica Set` и `Daemon Set`.
     Статические поднимаются благодаря `kubelet` демону, который фиксирует статические поды по манифестам в директории `/etc/kubelet.d/` (по умолчанию) и "следит" за жизнью работающих статических подов.
     Сам `kubelet` востанавливает свою работу благодаря `linux` инструменту демонизации процессов `systemd`.
+
+
+
+## Домашняя работа 2. Введение в контроллеры
+### Порядок выполнения:
+1) Создал кластер kind с [3 мастер нодами и 3-мя воркерами](kubernetes-controllers/kind-config.yaml)
+2) Создал [frontend replicaset](kubernetes-controllers/frontend-replicaset.yaml) и задеблоил в `kind`
+3) Попробовал обновить replicaset с новой версией и убедился, что не получилось с помощью команд 
+   `kubectl get replicaset frontend -o=jsonpath='{.spec.template.spec.containers[0].image}'` (убедился, что реплика сет обновился) 
+   и `kubectl get pods -l app=frontend -o=jsonpath='{.items[0:3].spec.containers[0].image}'` (убедился, что версия подов не изменилась)
+4) Обновление подов не происходит по той причине, что обновление образа в `replica set` не несет за собой 
+5) На примере [paymentservice-deployment.yaml](kubernetes-controllers/paymentservice-deployment.yaml) удалось убедиться,
+    что сущность `Deployment` решает проблему.
+6) Кроме того, на примере образа `node-exporter` понял как работает [`DaemonSet`](kubernetes-controllers/node-exporter-daemonset.yaml),
+    что позволяет очень просто настроить мониторинг всех нод, включая `master` ноды.
+7) В процессе выполнения были сделаны все дополнительные задания. Было очень интересно.
