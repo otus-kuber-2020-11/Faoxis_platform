@@ -1,12 +1,13 @@
-kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
   name: prometheus-pod-reader
   namespace: prometheus
 subjects:
-  - kind: User
-    name: bob
-    apiGroup: rbac.authorization.k8s.io
+  - kind: ServiceAccount
+    name: carol
+    namespace: prometheus
 roleRef:
-  kind:
-  name: admin
+  kind: ClusterRole
+  name: pod-reader
   apiGroup: rbac.authorization.k8s.io
