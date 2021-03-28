@@ -56,3 +56,27 @@ Faoxis Platform repository
 6) Кроме того, на примере образа `node-exporter` понял как работает [`DaemonSet`](kubernetes-controllers/node-exporter-daemonset.yaml),
     что позволяет очень просто настроить мониторинг всех нод, включая `master` ноды.
 7) В процессе выполнения были сделаны все дополнительные задания. Было очень интересно.
+
+
+## Домашняя работа. Операторы, CustomResourceDefinition
+### Задачи на проверку:
+1) Добавьте в README вывод комманды kubectl get jobs (там должны
+   быть успешно выполненные backup и restore job)
+   ```shell script
+    ✗ kubectl get jobs
+    NAME                         COMPLETIONS   DURATION   AGE
+    backup-mysql-instance-job    1/1           1s         2m51s
+    restore-mysql-instance-job   1/1           49s        110s
+   ```
+2) Приложетие вывод при запущенном MySQL
+   ```shell script
+    ✗ kubectl exec -ti $MYSQLPOD -- mysql -u root -potuspassword -e "select * from test;" otus-database
+    mysql: [Warning] Using a password on the command line interface can be insecure.
+    +----+-------------+
+    | id | name        |
+    +----+-------------+
+    |  1 | some data   |
+    |  2 | some data-2 |
+    +----+-------------+
+   ```
+   
